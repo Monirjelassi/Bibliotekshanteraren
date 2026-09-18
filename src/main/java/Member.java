@@ -13,7 +13,7 @@ public class Member {
     }
 
     public boolean canLoan() {
-       return  active_loans > 2;
+       return  active_loans < 2;
     }
 
     public UUID getId() {
@@ -30,5 +30,8 @@ public class Member {
 
     public void setActive_loans(int active_loans) {
         this.active_loans = active_loans;
+    }
+    public void incrementActiveLoans() {
+        active_loans++;
     }
 }

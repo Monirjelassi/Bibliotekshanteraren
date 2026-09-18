@@ -2,30 +2,62 @@ public class Library {
     Book[] books = new Book[10];
     Member[] members = new Member[10];
     Loan[] loans = new Loan[10];
+    int bookCount = 0;
+    int memberCount = 0;
+    int loanCount = 0;
 
-
-
-    public Book[] getBooks() {
-        return books;
+    public void addBook(Book book) {
+            if (bookCount < books.length) {
+                books[bookCount] = book;
+                bookCount++;
+                System.out.println("Book added");
+            } else {
+                System.out.println("Book inventory is full");
+            }
     }
 
-    public void setBooks(Book[] books) {
-        this.books = books;
+    public void showBooks() {
+        for (Book book : books) {
+            System.out.println(book);
+        }
+    }
+    public void addMember(Member member) {
+        if (memberCount < members.length) {
+            members[memberCount] = member;
+            memberCount++;
+            System.out.println("Member added");
+        }  else {
+            System.out.println("Member inventory is full");
+        }
+    }
+    public Book findBookByTitle(String titel) {
+        for (Book book : books) {
+            if (book != null && book.titel().equalsIgnoreCase(titel))
+                return book;
+        }
+        return null;
     }
 
-    public Member[] getMembers() {
-        return members;
+    public Member findMemberByName(String name) {
+        for (Member member : members) {
+            if (member != null && member.getName().equalsIgnoreCase(name))
+                return member;
+        }
+        return null;
     }
 
-    public void setMembers(Member[] members) {
-        this.members = members;
-    }
-
-    public Loan[] getLoans() {
-        return loans;
-    }
-
-    public void setLoans(Loan[] loans) {
-        this.loans = loans;
+    public void loanBook(Loan loan) {
+        if (loan.member().canLoan()) {
+            if (loanCount < loans.length) {
+                loans[loanCount] = loan;
+                loanCount++;
+                loan.member().incrementActiveLoans();
+                System.out.println("Loan added");
+            } else  {
+                System.out.println("Loan inventory is full");
+            }
+        }  else {
+            System.out.println("To many active loans");
+        }
     }
 }
