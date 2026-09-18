@@ -12,6 +12,10 @@ public class Member {
         this.active_loans = active_loans;
     }
 
+    public boolean canLoan() {
+       return  active_loans > 2;
+    }
+
     public UUID getId() {
         return id;
     }
