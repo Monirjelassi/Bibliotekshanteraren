@@ -17,3 +17,7 @@ public class Main {
 //5. Sök bok (titel eller författare)
 //6. Visa alla böcker och status
 //e. Avsluta
+
+//TODO
+//Lägg till status utlånad eller inte vid print. switch 6
+//fixa så man inte kan låna en bok som redan är utlånad.

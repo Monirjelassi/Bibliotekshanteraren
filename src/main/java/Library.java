@@ -34,32 +34,30 @@ public class Library {
 
     public Book findBookByTitle(String titel) {
         for (Book book : books) {
-            if (book != null && book.titel().equalsIgnoreCase(titel))
-                return book;
+            if (book != null && book.titel().equalsIgnoreCase(titel)) return book;
         }
         return null;
     }
 
     public Member findMemberByName(String name) {
         for (Member member : members) {
-            if (member != null && member.getName().equalsIgnoreCase(name))
-                return member;
+            if (member != null && member.getName().equalsIgnoreCase(name)) return member;
         }
         return null;
     }
 
     public void loanBook(Loan loan) {
-        if (loan.member().canLoan()) {
-            if (loanCount < loans.length) {
-                loans[loanCount] = loan;
-                loanCount++;
-                loan.member().incrementActiveLoans();
-                System.out.println("Loan added");
-            } else {
-                System.out.println("Loan inventory is full");
-            }
+        if (!loan.member().canLoan()) {
+            System.out.println("Too many active loans");
+        } else if (findBookInLoan(loan.book()) != null) {
+            System.out.println("Book is already loaned out");
+        } else if (loanCount < loans.length) {
+            loans[loanCount] = loan;
+            loanCount++;
+            loan.member().incrementActiveLoans();
+            System.out.println("Loan added");
         } else {
-            System.out.println("To many active loans");
+            System.out.println("Loan inventory is full");
         }
     }
 
