@@ -5,7 +5,8 @@ import java.util.UUID;
 public class Menu {
     Library library = new Library();
     Scanner scanner = new Scanner(System.in);
-    public void startMenu(){
+
+    public void startMenu() {
 
         boolean running = true;
 
@@ -31,7 +32,7 @@ public class Menu {
                     loanBook();
                     break;
                 case 4:
-                    System.out.println("book ID: ");
+                    returnBook();
                     break;
                 case 5:
                     System.out.println("Search book: (Titel or Author");
@@ -49,7 +50,8 @@ public class Menu {
         }
         scanner.close();
     }
-    private void showmenu(){
+
+    private void showmenu() {
         System.out.println("Bibliotekshanteraren");
         System.out.println("====================");
         System.out.println("1. Add book");
@@ -62,28 +64,28 @@ public class Menu {
         System.out.print("Choose an option: ");
     }
 
-    private void addBook(){
+    private void addBook() {
         System.out.println("Enter book name: ");
         String bookName = scanner.nextLine();
         System.out.println("Enter author name: ");
         String memberName = scanner.nextLine();
         UUID isbn = UUID.randomUUID();
-        Book book = new Book(isbn,bookName,memberName);
+        Book book = new Book(isbn, bookName, memberName);
         library.addBook(book);
     }
 
-    private void showAllBooks(){
+    private void showAllBooks() {
         library.showBooks();
     }
 
-    private void addMember(){
+    private void addMember() {
         System.out.println("Enter member name: ");
         String memberName = scanner.nextLine();
-        Member member = new Member(UUID.randomUUID(),memberName, 0);
+        Member member = new Member(UUID.randomUUID(), memberName, 0);
         library.addMember(member);
     }
 
-    private void loanBook(){
+    private void loanBook() {
         System.out.println("Enter book title: ");
         String bookTitle = scanner.nextLine();
         System.out.println("Enter member name: ");
@@ -99,6 +101,19 @@ public class Menu {
 
         Loan loan = new Loan(book, member);
         library.loanBook(loan);
+    }
+
+    private void returnBook() {
+        System.out.println("Enter book title for return: ");
+        String bookTitle = scanner.nextLine();
+        Loan loan = library.findBookInLoan(library.findBookByTitle(bookTitle));
+        if (loan == null) {
+            System.out.println("Book not found");
+        } else {
+            library.removeLoan(loan);
+            System.out.println("Book successfully returned!");
+        }
+
     }
 
 }

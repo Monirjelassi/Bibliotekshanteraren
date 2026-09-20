@@ -7,13 +7,13 @@ public class Library {
     int loanCount = 0;
 
     public void addBook(Book book) {
-            if (bookCount < books.length) {
-                books[bookCount] = book;
-                bookCount++;
-                System.out.println("Book added");
-            } else {
-                System.out.println("Book inventory is full");
-            }
+        if (bookCount < books.length) {
+            books[bookCount] = book;
+            bookCount++;
+            System.out.println("Book added");
+        } else {
+            System.out.println("Book inventory is full");
+        }
     }
 
     public void showBooks() {
@@ -27,7 +27,7 @@ public class Library {
             members[memberCount] = member;
             memberCount++;
             System.out.println("Member added");
-        }  else {
+        } else {
             System.out.println("Member inventory is full");
         }
     }
@@ -55,15 +55,33 @@ public class Library {
                 loanCount++;
                 loan.member().incrementActiveLoans();
                 System.out.println("Loan added");
-            } else  {
+            } else {
                 System.out.println("Loan inventory is full");
             }
-        }  else {
+        } else {
             System.out.println("To many active loans");
         }
     }
 
-    public void returnBook(Loan loan) {
+    public Loan findBookInLoan(Book book) {
+        for (int i = 0; i < loanCount; i++) {
+            if (loans[i].book().equals(book)) {
+                return loans[i];
+            }
+        }
+        return null;
+    }
 
+    public void removeLoan(Loan loan) {
+        for (int i = 0; i < loanCount; i++) {
+            if (loans[i].equals(loan)) {
+                for (int j = i; j < loanCount - 1; j++) {
+                    loans[j] = loans[j + 1];
+                }
+                loanCount--;
+                loan.member().decrementActiveLoans();
+                return;
+            }
+        }
     }
 }

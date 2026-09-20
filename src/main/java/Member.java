@@ -35,4 +35,7 @@ public class Member {
     public void incrementActiveLoans() {
         active_loans++;
     }
+    public void decrementActiveLoans() {
+        active_loans--;
+    }
 }
