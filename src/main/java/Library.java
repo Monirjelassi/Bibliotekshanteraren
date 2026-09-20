@@ -21,6 +21,7 @@ public class Library {
             System.out.println(book);
         }
     }
+
     public void addMember(Member member) {
         if (memberCount < members.length) {
             members[memberCount] = member;
@@ -30,6 +31,7 @@ public class Library {
             System.out.println("Member inventory is full");
         }
     }
+
     public Book findBookByTitle(String titel) {
         for (Book book : books) {
             if (book != null && book.titel().equalsIgnoreCase(titel))
@@ -59,5 +61,9 @@ public class Library {
         }  else {
             System.out.println("To many active loans");
         }
+    }
+
+    public void returnBook(Loan loan) {
+
     }
 }

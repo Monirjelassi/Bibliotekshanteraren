@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -10,8 +11,15 @@ public class Menu {
 
         while (running) {
             showmenu(); //Prints out the menu.
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a number! (1-7)");
+                scanner.nextLine();
+                continue;
+            }
             switch (choice) {
                 case 1:
                     addBook();
@@ -26,7 +34,7 @@ public class Menu {
                     System.out.println("book ID: ");
                     break;
                 case 5:
-                    System.out.println("Search book ID: ");
+                    System.out.println("Search book: (Titel or Author");
                     break;
                 case 6:
                     showAllBooks();
@@ -67,12 +75,14 @@ public class Menu {
     private void showAllBooks(){
         library.showBooks();
     }
+
     private void addMember(){
         System.out.println("Enter member name: ");
         String memberName = scanner.nextLine();
         Member member = new Member(UUID.randomUUID(),memberName, 0);
         library.addMember(member);
     }
+
     private void loanBook(){
         System.out.println("Enter book title: ");
         String bookTitle = scanner.nextLine();

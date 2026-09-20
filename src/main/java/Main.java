@@ -10,9 +10,9 @@ public class Main {
 }
 //Bibliotekshanteraren
 //====================
-//1. Lägg till bok
-//2. Registrera medlem
-//3. Låna bok
+//1. Lägg till bok klart
+//2. Registrera medlem klart
+//3. Låna bok klart
 //4. Lämna tillbaka bok
 //5. Sök bok (titel eller författare)
 //6. Visa alla böcker och status

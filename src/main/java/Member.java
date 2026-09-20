@@ -31,6 +31,7 @@ public class Member {
     public void setActive_loans(int active_loans) {
         this.active_loans = active_loans;
     }
+
     public void incrementActiveLoans() {
         active_loans++;
     }
