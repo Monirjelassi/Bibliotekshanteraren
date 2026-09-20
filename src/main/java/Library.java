@@ -18,7 +18,14 @@ public class Library {
 
     public void showBooks() {
         for (Book book : books) {
-            System.out.println(book);
+            if (book != null) {
+                Loan loan = findBookInLoan(book);
+                if (loan != null) {
+                    System.out.println(book + " Book is loaned out to " + loan.member().getName());
+                } else {
+                    System.out.println(book + " Book is available");
+                }
+            }
         }
     }
 
