@@ -35,7 +35,7 @@ public class Menu {
                     returnBook();
                     break;
                 case 5:
-                    System.out.println("Search book: (Titel or Author");
+                    searchBookOrAuthor();
                     break;
                 case 6:
                     showAllBooks();
@@ -114,6 +114,12 @@ public class Menu {
             System.out.println("Book successfully returned!");
         }
 
+    }
+
+    private void searchBookOrAuthor() {
+        System.out.println("Enter book title or author name for search: ");
+        String search = scanner.nextLine();
+        library.searchBookOrAuthor(search);
     }
 
 }

@@ -14,12 +14,12 @@ public class Main {
 //2. Registrera medlem klart
 //3. Låna bok klart
 //4. Lämna tillbaka bok
-//5. Sök bok (titel eller författare)
+//5. Sök bok (title eller författare)
 //6. Visa alla böcker och status
 //e. Avsluta
 
 //TODO
 //switch case 5, sök efter bok eller author (krav under)
-// Söka bok på (del av) titel eller författare, skiftlägesokänsligt, via egen sökloop (linjär
+// Söka bok på (del av) title eller författare, skiftlägesokänsligt, via egen sökloop (linjär
 //sökning).
 

@@ -39,9 +39,9 @@ public class Library {
         }
     }
 
-    public Book findBookByTitle(String titel) {
+    public Book findBookByTitle(String title) {
         for (Book book : books) {
-            if (book != null && book.titel().equalsIgnoreCase(titel)) return book;
+            if (book != null && book.title().equalsIgnoreCase(title)) return book;
         }
         return null;
     }
@@ -88,5 +88,24 @@ public class Library {
                 return;
             }
         }
+    }
+
+    public void searchBookOrAuthor(String search) {
+
+        boolean hit = false;
+        search = search.toLowerCase();
+
+        for (Book book : books) {
+            if (book != null && (book.title().toLowerCase().contains(search)
+                    || book.author().toLowerCase().contains(search))) {
+                System.out.println("Search found: " + book);
+                hit = true;
+            }
+        }
+        if (!hit) {
+            System.out.println("Book or author not found");
+        }
+
+
     }
 }
