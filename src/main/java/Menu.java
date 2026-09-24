@@ -13,7 +13,7 @@ public class Menu {
             try {
                 choice = Integer.parseInt(IO.readln("Choose an option: "));
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a number! (1-7)");
+                IO.println("Please enter a number! (1-7)");
                 continue;
             }
             switch (choice) {
@@ -36,25 +36,25 @@ public class Menu {
                     showAllBooks();
                     break;
                 case 7:
-                    System.out.println("Shutting down...");
+                    IO.println("Shutting down...");
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid choice");
+                    IO.println("Invalid choice");
             }
         }
     }
 
     private void showmenu() {
-        System.out.println("Bibliotekshanteraren");
-        System.out.println("====================");
-        System.out.println("1. Add book");
-        System.out.println("2. Register member");
-        System.out.println("3. Loan book");
-        System.out.println("4. Return book");
-        System.out.println("5. Search book");
-        System.out.println("6. Show all books");
-        System.out.println("7. Quit");
+        IO.println("Bibliotekshanteraren");
+        IO.println("====================");
+        IO.println("1. Add book");
+        IO.println("2. Register member");
+        IO.println("3. Loan book");
+        IO.println("4. Return book");
+        IO.println("5. Search book");
+        IO.println("6. Show all books");
+        IO.println("7. Quit");
     }
 
     private void addBook() {
@@ -83,7 +83,7 @@ public class Menu {
         Member member = library.findMemberByName(memberName);
 
         if (book == null || member == null) {
-            System.out.println("Book or member not found");
+            IO.println("Book or member not found");
             return;
         }
 
@@ -95,10 +95,10 @@ public class Menu {
         String bookTitle = IO.readln("Enter book title for return: ");
         Loan loan = library.findBookInLoan(library.findBookByTitle(bookTitle));
         if (loan == null) {
-            System.out.println("Book not found");
+            IO.println("Book not found");
         } else {
             library.removeLoan(loan);
-            System.out.println("Book successfully returned!");
+            IO.println("Book successfully returned!");
         }
 
     }

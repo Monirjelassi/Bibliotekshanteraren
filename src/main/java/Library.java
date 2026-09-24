@@ -10,9 +10,9 @@ public class Library {
         if (bookCount < books.length) {
             books[bookCount] = book;
             bookCount++;
-            System.out.println("Book added");
+            IO.println("Book added");
         } else {
-            System.out.println("Book inventory is full");
+            IO.println("Book inventory is full");
         }
     }
 
@@ -21,9 +21,9 @@ public class Library {
             if (book != null) {
                 Loan loan = findBookInLoan(book);
                 if (loan != null) {
-                    System.out.println(book + " Book is loaned out to " + loan.member().getName());
+                    IO.println(book + " Book is loaned out to " + loan.member().getName());
                 } else {
-                    System.out.println(book + " Book is available");
+                    IO.println(book + " Book is available");
                 }
             }
         }
@@ -33,9 +33,9 @@ public class Library {
         if (memberCount < members.length) {
             members[memberCount] = member;
             memberCount++;
-            System.out.println("Member added");
+            IO.println("Member added");
         } else {
-            System.out.println("Member inventory is full");
+            IO.println("Member inventory is full");
         }
     }
 
@@ -55,16 +55,16 @@ public class Library {
 
     public void loanBook(Loan loan) {
         if (!loan.member().canLoan()) {
-            System.out.println("Too many active loans");
+            IO.println("Too many active loans");
         } else if (findBookInLoan(loan.book()) != null) {
-            System.out.println("Book is already loaned out");
+            IO.println("Book is already loaned out");
         } else if (loanCount < loans.length) {
             loans[loanCount] = loan;
             loanCount++;
             loan.member().incrementActiveLoans();
-            System.out.println("Loan added");
+            IO.println("Loan added");
         } else {
-            System.out.println("Loan inventory is full");
+            IO.println("Loan inventory is full");
         }
     }
 
@@ -98,12 +98,12 @@ public class Library {
         for (Book book : books) {
             if (book != null && (book.title().toLowerCase().contains(search)
                     || book.author().toLowerCase().contains(search))) {
-                System.out.println("Search found: " + book);
+                IO.println("Search found: " + book);
                 hit = true;
             }
         }
         if (!hit) {
-            System.out.println("Book or author not found");
+            IO.println("Book or author not found");
         }
 
 
