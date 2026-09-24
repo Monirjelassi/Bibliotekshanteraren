@@ -1,10 +1,7 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class Menu {
     Library library = new Library();
-    Scanner scanner = new Scanner(System.in);
 
     public void startMenu() {
 
@@ -14,11 +11,9 @@ public class Menu {
             showmenu(); //Prints out the menu.
             int choice;
             try {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
+                choice = Integer.parseInt(IO.readln("Choose an option: "));
+            } catch (NumberFormatException e) {
                 System.out.println("Please enter a number! (1-7)");
-                scanner.nextLine();
                 continue;
             }
             switch (choice) {
@@ -48,7 +43,6 @@ public class Menu {
                     System.out.println("Invalid choice");
             }
         }
-        scanner.close();
     }
 
     private void showmenu() {
@@ -61,14 +55,11 @@ public class Menu {
         System.out.println("5. Search book");
         System.out.println("6. Show all books");
         System.out.println("7. Quit");
-        System.out.print("Choose an option: ");
     }
 
     private void addBook() {
-        System.out.println("Enter book name: ");
-        String bookName = scanner.nextLine();
-        System.out.println("Enter author name: ");
-        String memberName = scanner.nextLine();
+        String bookName = IO.readln("Enter book name: ");
+        String memberName = IO.readln("Enter author name: ");
         UUID isbn = UUID.randomUUID();
         Book book = new Book(isbn, bookName, memberName);
         library.addBook(book);
@@ -79,17 +70,14 @@ public class Menu {
     }
 
     private void addMember() {
-        System.out.println("Enter member name: ");
-        String memberName = scanner.nextLine();
+        String memberName = IO.readln("Enter member name: ");
         Member member = new Member(UUID.randomUUID(), memberName, 0);
         library.addMember(member);
     }
 
     private void loanBook() {
-        System.out.println("Enter book title: ");
-        String bookTitle = scanner.nextLine();
-        System.out.println("Enter member name: ");
-        String memberName = scanner.nextLine();
+        String bookTitle = IO.readln("Enter book title: ");
+        String memberName = IO.readln("Enter member name: ");
 
         Book book = library.findBookByTitle(bookTitle);
         Member member = library.findMemberByName(memberName);
@@ -104,8 +92,7 @@ public class Menu {
     }
 
     private void returnBook() {
-        System.out.println("Enter book title for return: ");
-        String bookTitle = scanner.nextLine();
+        String bookTitle = IO.readln("Enter book title for return: ");
         Loan loan = library.findBookInLoan(library.findBookByTitle(bookTitle));
         if (loan == null) {
             System.out.println("Book not found");
@@ -117,8 +104,7 @@ public class Menu {
     }
 
     private void searchBookOrAuthor() {
-        System.out.println("Enter book title or author name for search: ");
-        String search = scanner.nextLine();
+        String search = IO.readln("Enter book title or author name for search: ");
         library.searchBookOrAuthor(search);
     }
 
