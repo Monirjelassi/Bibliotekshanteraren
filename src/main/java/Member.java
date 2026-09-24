@@ -3,17 +3,17 @@ import java.util.UUID;
 public class Member {
     private final UUID id;
     private final String name;
-    private int active_loans;
+    private int activeLoans;
 
 
-    public Member(UUID id, String name, int active_loans) {
+    public Member(UUID id, String name, int activeLoans) {
         this.id = id;
         this.name = name;
-        this.active_loans = active_loans;
+        this.activeLoans = activeLoans;
     }
 
     public boolean canLoan() {
-       return  active_loans < 2;
+       return  activeLoans < 2;
     }
 
     public UUID getId() {
@@ -24,19 +24,19 @@ public class Member {
         return name;
     }
 
-    public int getActive_loans() {
-        return active_loans;
+    public int getActiveLoans() {
+        return activeLoans;
     }
 
-    public void setActive_loans(int active_loans) {
-        this.active_loans = active_loans;
+    public void setActiveLoans(int activeLoans) {
+        this.activeLoans = activeLoans;
     }
 
     public void incrementActiveLoans() {
-        active_loans++;
+        activeLoans++;
     }
 
     public void decrementActiveLoans() {
-        active_loans--;
+        activeLoans--;
     }
 }

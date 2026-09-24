@@ -1,10 +1,10 @@
 public class Library {
-    Book[] books = new Book[10];
-    Member[] members = new Member[10];
-    Loan[] loans = new Loan[10];
-    int bookCount = 0;
-    int memberCount = 0;
-    int loanCount = 0;
+    private Book[] books = new Book[10];
+    private Member[] members = new Member[10];
+    private Loan[] loans = new Loan[10];
+    private int bookCount = 0;
+    private int memberCount = 0;
+    private int loanCount = 0;
 
     public void addBook(Book book) {
         if (bookCount < books.length) {
